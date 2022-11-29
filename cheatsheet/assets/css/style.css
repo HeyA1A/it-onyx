@@ -11,10 +11,29 @@ html {
   
   body{
     font-family: 'Lato', sans-serif;
-    background-image: url:
-    background:#c0c0c0;
-    padding:20px;
+    background-image: url:("cheatsheet/assets/css/image/14237474_5440162.jpg");
+    background-image: stretch
   }
+  
+
+  .container{
+    margin:auto;
+    padding:40px;
+    
+  }
+  img{
+    max-width: 100%;
+  } 
+
+  main{
+    background-image: url('../css/image/14237474_5440162.jpg');
+    background-repeat: repeat;
+    border:2px inset #080808;
+    border-radius:4px;
+  }
+
+  
+  
   
   label, input {
     display:block;
@@ -26,10 +45,11 @@ html {
   
   section[id]{
     border:6px solid rgba(0,0,0,.4);
-    background:#fff;
-    border-radius:12px;
+    background-color: #aa58bb;
+   
+    border-radius:5px;
     margin:40px auto;
-    padding:20px;
+    padding:5px;
     display:flex;
     flex-wrap: wrap;
   }
@@ -59,24 +79,19 @@ html {
   }
   .markup{
     flex: 1 70%;
-    background-color:lightgrey;
+    background-color:rgb(192, 13, 13)211, 211);
     padding:10px;
     margin-bottom:40px;
     overflow:auto;
   }
   
   
-  /**
-   * prism.js default theme for JavaScript, CSS and HTML
-   * Based on dabblet (http://dabblet.com)
-   * @author Lea Verou
-   */
   
   code[class*="language-"],
   pre[class*="language-"] {
       color: black;
       background: none;
-      text-shadow: 0 1px white;
+      text-shadow: 0 1px rgb(26, 25, 25);
       font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
       font-size: 1em;
       text-align: left;
@@ -138,7 +153,7 @@ html {
   .token.prolog,
   .token.doctype,
   .token.cdata {
-      color: slategray;
+      color: rgb(20, 100, 180);
   }
   
   .token.punctuation {
