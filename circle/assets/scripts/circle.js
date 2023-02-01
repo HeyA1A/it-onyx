@@ -2,7 +2,7 @@ $( "#circleForm" ).validate({
 
 });
 
-function displayCircle() {
+function displaycircle() {
      if ($("#circleForm").valid()) {
 
       document.getElementById("diameter").innerHTML="";
@@ -54,4 +54,5 @@ function displayCircle() {
     document.getElementById("diameter").innerHTML = "";
     document.getElementById("circumference").innerHTML = "";
     document.getElementById("area").innerHTML = "";
+    document.getElementById("circle").innerHTML = "";
 }
