@@ -1,0 +1,17 @@
+body {
+    background-color: blueviolet;
+    font-family: 'Rubik', sans-serif;
+   }
+   
+   main{
+    background-color: #ffffff;
+   }
+
+.img1 {
+width: 550px
+} 
+
+
+.img2 {
+  max-width: 80%;
+} 
