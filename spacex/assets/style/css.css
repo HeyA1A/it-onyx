@@ -1,9 +1,10 @@
-$primary-font: sans-serif;
-$secondary-font:'Oswald', sans-serif;
 
+* {
+  box-sizing: inherit;
+}
 
 body {
-  color: black;
+  background-color: black;
 
     
   }
@@ -14,35 +15,46 @@ main {
   background-size: cover;
   max-width: 100%;
   height: 625px;
-
+  margin: none;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: visible;
 }
 
-.card__btn {
-  color: #fff;
-  border: 1px solid rgba(221, 17, 17, 0.5);
+.discover {
+  color: rgb(240, 243, 243);
+  border: 4px solid darkred;
   border-radius: 24px;
-  font-family: $primary-font;
-  font-size: 6px;
+  padding: 8px 8px;
+  width: 68px;
+  margin: 5px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 16px;
   text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  width: 88px;
-  margin: 10px;
-  padding: 8px;
+  text-shadow: -1.5px 0px 0px #111010, 1px 0px 0px #0c0c0c, 1.5px 0px 0px #0c0c0c;
+  position: relative;
+  cursor: pointer;
+ 
+
+}
+.discover:hover {
+  transform: scale(1.2);
+}
+a:link
+ { text-decoration: none;
+
 }
 
 .card__text-sm {
   color: #fff;
   font-family: $primary-font;
+  text-shadow: 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c;
   font-size: 10px;
   margin: 0;
   padding: 16px 0 8px;
   position: relative;
 }
 .card__text-sm::before {
-  content: "";
+
   background: #fff;
   height: 1px;
   width: 16px;
@@ -52,6 +64,7 @@ main {
 }
 .card__text-lg {
   color: #f5f8fa;
+  text-shadow: 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c;
   font-family: $secondary-font;
   font-size: 18px;
   font-weight: 300;
@@ -66,23 +79,18 @@ main {
   padding: 0 16px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-
- .card__text-lg {
-    font-family: $secondary-font;
-    font-size: 40px;
-    font-weight: 400;
-    letter-spacing: 1.4px;
- }
+  justify-content: flex-end; 
+}
 
   .card__text-md {
-    color: #fff;
+    color: #f9f9fd;
     font-family: $primary-font;
+    text-shadow: 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c, 1px 0px 0px #0c0c0c;
     font-size: 10px;
     font-weight: 100;
     line-height: 1.5;
     padding: 0 32px 0 0;
-    opacity: 0.5;
+ 
   }
   .card__text-sm {
     font-size: 14px;
@@ -91,7 +99,6 @@ main {
     width: 24px;
     height: 2px;
   }
-}
 
 .card-sm__container {
   height: 232px;
@@ -116,7 +123,7 @@ main {
   cursor: pointer;
   transition: 0.3s ease;
   
-&:hover {
+}.card-sm:hover {
     margin: -8px 8px 0;
   }
   
@@ -124,7 +131,6 @@ main {
     opacity: 0.8;
   }
   
-}
 
 .main::-webkit-scrollbar {
   display: none;
@@ -135,6 +141,7 @@ main {
   -ms-overflow-style: none;
  
 }
+
 
     @media screen and (max-width: 1260px) {
         main {
