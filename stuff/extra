@@ -1,0 +1,274 @@
+async function GetStock() {
+    "use strict";
+
+ 
+    var form = $("#myform");
+    
+ 
+    form.validate();
+    
+   
+    if (form.valid()) {
+        
+        var StockSymbol = document.getElementById("StockSymbol").value;
+        var apiKey = "35eaVfKsObXpSg2O4kMLj9udr2DgVW1f"
+        var FromDate = document.getElementById("FromDate").value;
+        var ToDate = document.getElementById("ToDate").value;
+
+     
+        var myURL1 = "https://api.polygon.io/v3/reference/tickers/"; + StockSymbol + "?apiKey=" + apiKey;
+       
+        var msg1Object = await fetch(myURL1);
+
+        if (msg1Object.status >= 200 && msg1Object.status <= 299) {            
+            var msg1JSONText = await msg1Object.text();
+        
+            var msg1 = JSON.parse(msg1JSONText);
+          
+            document.getElementById("company").innerHTML = msg1.results.name;
+            document.getElementById("address").innerHTML = msg1.results.address.address1 + ", " + msg1.results.address.city + ", " 
+                + msg1.results.address.state + "   " + msg1.results.address.postal_code;
+            document.getElementById("employees").innerHTML = msg1.results.total_employees;
+            document.getElementById("description").innerHTML = msg1.results.sic_description;
+            document.getElementById("url").innerHTML = msg1.results.homepage_url;
+            document.getElementById("url").href = msg1.results.homepage_url;
+        }
+        else {
+                alert("Stock Not Found - Status: " + msg1Object.status)
+            return;
+        }        
+ 
+       
+        var myURL2 = "https://api.polygon.io/v2/aggs/ticker/" + StockSymbol + "/range/1/day/" + FromDate + "/" + ToDate + "?unadjusted=false&sort=asc&limit=32&apiKey=" + apiKey;
+        
+        var msg2Object = await fetch(myURL2);
+       
+        if (msg2Object.status >= 200 && msg2Object.status <= 299) {            
+            var msg2JSONText = await msg2Object.text();
+            
+            var msg2 = JSON.parse(msg2JSONText);
+            /* Your code to process the result goes here - 
+               
+                var stockdate = [];
+                var stockvalue = [];
+                var stockvolume = [];
+                var numdays = msg2.results.length;
+                if (numdays > 0) {
+                    for (var i = 0; i < numdays; i++) {
+                      
+                        stockvalue[i] = msg2.results[i].c;
+                       
+                        stockvolume[i] = msg2.results[i].v;
+                       
+                        var tempdate = new Date(msg2.results[i].t);
+                       
+                        stockdate[i] = tempdate.toLocaleDateString();
+                    }
+                }
+
+                var stockvaluetable = "";
+                if (numdays > 0) {
+                    stockvaluetable = stockvaluetable + "<table><caption>Stock Price</caption><tr><th>Date</th><th>Price</th></tr>";
+                    for (var i = 0; i < numdays; i++) {
+                        stockvaluetable = stockvaluetable + "<tr><td>" + stockdate[i] + "</td><td>" + stockvalue[i] + "</td></tr>";
+                    }
+                    stockvaluetable = stockvaluetable + "</table>"
+                    document.getElementById("StockValueTable").innerHTML = stockvaluetable;
+                }
+                
+                var stockvolumetable = "";
+                if (numdays > 0) {
+                    stockvolumetable = stockvolumetable + "<table><caption>Stock Volume</caption><tr><th>Date</th><th>Volume</th></tr>";
+                    for (var i = 0; i < numdays; i++) {
+                        stockvolumetable = stockvolumetable + "<tr><td>" + stockdate[i] + "</td><td>" + stockvolume[i] + "</td></tr>";
+                    }
+                    stockvolumetable = stockvolumetable + "</table>"
+                    document.getElementById("StockVolumeTable").innerHTML = stockvolumetable;
+                }
+
+                var ctx0 = document.getElementById("chartjs-0");
+                var myChart = new Chart(ctx0, {
+                    "type":"line",
+                    "data": {
+                        "labels": stockdate,
+                        "datasets":[{"label":"Stock Close",
+                        "data": stockvalue,
+                        "fill":false,
+                        "borderColor":"rgb(75, 192, 192)",
+                        "lineTension":0.1}]},
+                        "options":{ 
+                            responsive: false,
+                            maintainAspectRatio: true,
+                        }
+                    }
+                );
+                
+                var ctx1 = document.getElementById("chartjs-1");
+                var myChart = new Chart(ctx1, {
+                    "type":"line",
+                    "data": {
+                        "labels": stockdate,
+                        "datasets":[{"label":"Stock Volume",
+                        "data": stockvolume,
+                        "fill":false,
+                        "borderColor":"rgb(75, 192, 192)",
+                        "lineTension":0.1}]},
+                        "options":{ 
+                            responsive: false,
+                            maintainAspectRatio: true,
+                        }
+                    }
+                );
+            
+        }
+        else {
+            ("Stock Not Found - Status: " + msg2Object.status)
+            return
+        }
+    }
+}
+
+function ClearForm() {
+    document.getElementById("StockSymbol").value = "";
+    document.getElementById("FromDate").value = "";
+    document.getElementById("ToDate").value = "";
+    document.getElementById("company").innerHTML = "";
+    document.getElementById("address").innerHTML = "";
+    document.getElementById("employees").innerHTML = "";
+    document.getElementById("ceo").innerHTML = "";
+    document.getElementById("url").innerHTML = "";
+    document.getElementById("url").href = "";
+    document.getElementById("logo").src = "";
+    document.getElementById("StockValueTable").innerHTML = "";
+    document.getElementById("StockVolumeTable").innerHTML = "";
+    
+    /* Ugly Code to Erase Canvas */
+    var canvas0 = document.getElementById("chartjs-0");
+    var context0 = canvas0.getContext('2d');    
+    context0.clearRect(0, 0, canvas0.width, canvas0.height);
+    var canvas1 = document.getElementById("chartjs-1");
+    var context1 = canvas1.getContext('2d');    
+    context1.clearRect(0, 0, canvas1.width, canvas1.height);
+}
+
+
+.formcontainer {
+    width: 1000px;
+    padding: 5px;
+}
+
+.formlabel {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding: 5px;
+}
+
+.error {
+    color: red;
+    padding-left: 5px;
+}
+
+table {
+    border-collapse: collapse
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.img-container {
+  float: left;
+  width: 40%;
+  padding: 20px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Polygon - Company Details">
+    <meta name="keywords" content="HTML, CSS,JavaScript, AJAX, jQuery">
+    <meta name="author" content="Bruce Bauer">
+    <title>Polygon - Company Details</title>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="myform">
+        <div class="formcontainer">
+            <h2>Stock Ticker Details</h2>
+            <label for="StockSymbol" class="formlabel" >Enter Symbol: </label>
+            <!--<label for="DisplayStock" class="formlabel" ></label>-->
+            <input type="text" id="StockSymbol" name="StockSymbol" size="6" maxlength="6"
+                    data-rule-required="true"  data-msg-required="Value is Required">
+            <label class="error" for="StockSymbol" id="StockSymbolError"></label><br>
+            <label class="formlabel">From Date:</label>
+            <input type="date" name="FromDate" id="FromDate" 
+                data-rule-required="true" data-msg-required="From Date is Required">
+            <label id="FromDateError" for="FromDate" class="error"></label>
+            <label class="formlabel">To Date:</label>
+            <input type="date" name="ToDate" id="ToDate" 
+			     data-rule-required="true" data-msg-required="To Date is Required">
+		    <label id="ToDateError" for="ToDate" class="error"></label>
+            <br><br>
+            <input type="button" value="DisplayStock" id="DisplayStock" name="DisplayStock" onclick="GetStock();">
+            <input type="button" value="Clear" id="Clear" name="Clear" onclick="ClearForm();">
+            <hr>
+            <br>
+            <label for="company" class="formlabel">Company: </label>
+            <span id="company"></span><br>
+            <label for="address" class="formlabel">Address: </label>
+            <span id="address"></span><br>
+            <label for="employees" class="formlabel">Employees: </label>
+            <span id="employees"></span><br>
+            <label for="description" class="formlabel">Description: </label>
+            <span id="description"></span><br>
+            <label for="url" class="formlabel">URL: </label>
+            <a id="url"></a><br>
+            <hr>
+
+            <div class="clearfix">
+                <div class="img-container">
+                    <span id="StockValueTable"></span>
+                </div>
+                <div class="img-container">
+                    <span id="StockVolumeTable"></span>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="clearfix">
+                <div class="img-container">
+                    <canvas id="chartjs-0" width="400" height="400"></canvas>
+                </div>
+                <div class="img-container">
+                    <canvas id="chartjs-1" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

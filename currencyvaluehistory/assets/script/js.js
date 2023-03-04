@@ -1,43 +1,84 @@
-async function GetStock() {
+async function ShowResults() {
     "use strict";
 
-    // Get a reference to the form - Use the ID of the form
-    var form = $("#myform");
+    var form = $("#currencyvalueForm");
+     form.validate(); 
     
-    // Validate all of the for elements
-    form.validate();
-    
-    // If all of the form elements are valid, the get the form values
-    if (form.valid()) {
+     if (form.valid()) {
         
-        var StockSymbol = document.getElementById("StockSymbol").value;
-        var apiKey = "35eaVfKsObXpSg2O4kMLj9udr2DgVW1f"
+        var BaseCurrency = document.getElementById("BaseCurrency").value;
+        var ToCurrency = document.getElementById("ToCurrency").value;
+        var FromDate = document.getElementById("FromDate").value;
+        var ToDate = document.getElementById("ToDate").value;
 
-        /* URL for AJAX Call */
-        var myURL1 = "https://api.polygon.io/v3/reference/tickers/" + StockSymbol + "?apiKey=" + apiKey;
-        /* Make the AJAX call */
-        var msg1Object = await fetch(myURL1);
-        /* Check the status */
-        if (msg1Object.status >= 200 && msg1Object.status <= 299) {            
-            var msg1JSONText = await msg1Object.text();
-            // Parse the JSON string into an object
-            var msg1 = JSON.parse(msg1JSONText);
-            /* Your code to process the result goes here - 
-               display the returned message */
-            document.getElementById("company").innerHTML = msg1.results.name;
-            document.getElementById("address").innerHTML = msg1.results.address.address1 + ", " + msg1.results.address.city + ", " 
-                + msg1.results.address.state + "   " + msg1.results.address.postal_code;
-            document.getElementById("employees").innerHTML = msg1.results.total_employees;
-            document.getElementById("description").innerHTML = msg1.results.sic_description;
-            document.getElementById("url").innerHTML = msg1.results.homepage_url;
-            document.getElementById("url").href = msg1.results.homepage_url;
+        var apiKey = "3NWUV7nTLbvIAdK6Z5W37ooGaSLBDzqYp"
+        
+        
+     
+      
+        var myURL1 = "https://api.polygon.io//v2/aggs/ticker/" BaseCurrency + ToCurrency + "/range/1/day/" + FromDate + "/" + ToDate + "?unadjusted=false&sort=asc&limit=32&apiKey=" + apiKey;
+        var msg2Object = await fetch(myURL1);
+
+        if (msg2Object.status >= "" && msg2Object.status <= "") {            
+            var msg1JSONText = await msg2Object.text();
+          
+            var currency = [];
+            var value = [];
+            var dates = msg1.results.length;
+            if (numdays > 0) {
+
+            for (var i = 0; i < length; i++) {
+                
+                currency[i] = msg1.results[i].c;
+                value[i] = msg1.results[i].c;
+                var tempdate = new Date(msg1.results[i].c);
+                date[i] = tempdate.toLocaleDateString(); }}
+               
+                var ctx0 = document.getElementById("chartjs-0");
+                var myChart = new Chart(ctx0, {
+                    "type":"line",
+                    "data": {
+                        "labels": dates,
+                        "datasets":[{"label": "Currency Value History",
+                        "data": value,
+                        "fill":false,
+                        "borderColor":"rgb(75, 192, 192)",
+                        "lineTension":0.1}]},
+                        "options":{ 
+                            "options":{ 
+                                responsive: false,
+                                maintainAspectRatio: true,
+                            }
+    
+    
+                        }
+                    };
+            else {
+                alert("Currency Not Found - Status: " + msg2Object.status)
+                return
+            }
         }
-        else {
-            /* AJAX complete with error - probably invalid stock ticker symbol */
-                /* Your code to process the result goes here - 
-                   display the returned message */
-            alert("Stock Not Found - Status: " + msg1Object.status)
-            return;
-        }        
+
+
+
+function clearform() {
+    "use strict";
+
+    document.getElementById("BaseCurrency").value = "";
+    document.getElementById("ToCurrency").value = "";
+    document.getElementById("FromDate").value = "";
+    document.getElementById("ToDate").value = "";
+   
+    
+    var canvas0 = document.getElementById("chartjs-0");
+    var context0 = canvas0.getContext('2d');    
+    context0.clearRect(0, 0, canvas0.width, canvas0.height);
+
+    
+    
     }
 }
+
+$("#currencyvalueForm").validate({
+
+});
