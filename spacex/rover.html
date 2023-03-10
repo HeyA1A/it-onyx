@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-    <script src="script/js.js"></script>
+    <script src="assets/script/rover.js"></script>
     <title>Mar's Rover Photo Explorer</title>
     <link href="assets/style/rover.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -55,67 +55,68 @@
 
 <hr>
 
-    <form id="roverForm">
- 
-  <h2>Select a Rover and Picture Date</h2><br>
-           
-
+<form id="roverForm">
   <div class="formcontainer">
 
-    <label class="formlabel" for ="Rover">Rover:</label>
- 
-  <label for="CuriosityRover">
+<h2>Select a Rover and Picture Date</h2>
+       
+<label class="formlabel" for ="Rover">Rover:</label>
+
+<label for="CuriosityRover">
+<input
+  type="radio"
+  name="Rover"
+  id="CuriosityRover"
+  value="Curiosity"
+  data-rule-required="true"
+  data-msg-required="Rover selection is Required"/>Curiosity</label>
+
+<label for="OpportunityRover">
+  <input
+    type="radio"
+    name="Rover"
+    id="OpportunityRover"
+    value="Opportunity"
+    data-rule-required="true"
+    data-msg-required="Rover selection is Required"/>Opportunity</label>
+
+  <label for="SpiritRover">
     <input
       type="radio"
       name="Rover"
-      id="CuriosityRover"
-      value="Curiosity"
+      id="SpiritRover"
+      value="Spirit"
       data-rule-required="true"
-      data-msg-required="Rover selection is Required"/>Curiosity</label>
+      data-msg-required="Rover Selection is Required"/>Spirit</label>
 
-    <label for="OpportunityRover">
-      <input
-        type="radio"
-        name="Rover"
-        id="OpportunityRover"
-        value="Opportunity"
-        data-rule-required="true"
-        data-msg-required="Rover selection is Required"/>Opportunity</label>
+      <label for="Rover" class="error" id="RoverMsg"></label>
+      <br><br>
 
-      <label for="SpiritRover">
-        <input
-          type="radio"
-          name="Rover"
-          id="SpiritRover"
-          value="Spirit"
-          data-rule-required="true"
-          data-msg-required="Rover Selection is Required"/>Spirit</label>
-
-          <label for="Rover" class="error" id="RoverMsg"></label>
-          <br><br>
-  
 
 <label class="formlabel" for="PictureDate">Picture Date:</label>
 
 <input type="date" id="PictureDate" name="PictureDate" 
-data-rule-required="true" data-msg-required="Date is Required"
-data-rule-date="true" data-msg-date="Date must be MM/DD/YYYY format">
-<label for="PictureDate" class="error"></label><br>
+data-rule-required="true" data-msg-required="Date is Required">
+<label for="PictureDate" class="error" id="dateMsg"></label><br>
 
 
 
-          <input type="button" value="Search" id =btn name="Search" onclick="search();">
-          <input type="button" value="Clear" id="btn" name="Clear" onclick="clearform();">
+<input type="button" value="Search" id ="Search" name="Search" onclick="DisplayPhotos();">
+<input type="button" value="Clear" id="Clear" name="Clear" onclick="ClearForm();">
 <hr>
-<div class="clearfix">
-    <div class="img-container">
-        <canvas id="chartjs-0" width="800" height="800"></canvas>
-    </div>
 
 
-    
-    </form>
-    
-    </main>
+
+
+
+<script>
+$("#roverForm").validate({
+
+});
+
+</script>
+</form>
+
+</main>
 </body>
 </html>

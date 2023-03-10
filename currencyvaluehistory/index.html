@@ -21,7 +21,7 @@
     <div class="formcontainer">
  <h2>Currency Value History</h2>
            
-<label class="formlabel">Base Currency:</label>
+<label class="formlabel" >Base Currency:</label>
   <select name="Base Currency" id="BaseCurrency"
 data-rule-required="true" data-msg-required="Currency is Required">
 <option value="">Select a Currrency...</option>
@@ -33,7 +33,7 @@ data-rule-required="true" data-msg-required="Currency is Required">
 </select><br>
 
 <label class="formlabel">Convert to Currency:</label>
-  <select name="Convert to Currency" id="ToCurrency"
+  <select id="ToCurrency" name ="ToCurrency"
 data-rule-required="true" data-msg-required="Currency is Required">
 <option value="">Select a Currrency...</option>
 <option value="USD">US Dollars</option>
@@ -46,20 +46,27 @@ data-rule-required="true" data-msg-required="Currency is Required">
 
 <label class="formlabel" for="FromDate">From Date:</label>
   <input type="date" id="FromDate" name="FromDate" 
-data-rule-required="true" data-msg-required="From Date is Required"
-data-rule-date="true" data-msg-date="Date must be MM/DD/YYYY format">
-<label for="FromDate" class="error"></label><br>
+data-rule-required="true" data-msg-required="From Date is Required">
+<label for="FromDate" class="error" id="FromDateMsg"></label><br>
 
 <label class="formlabel" for="ToDate">To Date:</label>
   <input type="date" id="ToDate" name="ToDate" 
-data-rule-required="true" data-msg-required="To Date is Required"
-data-rule-date="true" data-msg-date="Date must be MM/DD/YYYY format">
-<label for="ToDate" class="error"></label><br>
+data-rule-required="true" data-msg-required="To Date is Required">
+<label for="ToDate" class="error" id="ToDateMsg"></label><br>
 
 
           <input type="button" value="ShowResults" id= "ShowResults" name="ShowResults" onclick="Results();">
           <input type="button" value="Clear" id= "Clear" name= "Clear" onclick="ClearForm();">
 <hr>
+
+<script>
+  $("#currencyvalueForm").validate({
+  
+  });
+  
+  </script>
+  
+
  </form>
     </body>
 </html>

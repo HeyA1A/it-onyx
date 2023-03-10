@@ -78,34 +78,23 @@ async function Results() {
         }
     }
 
-function ClearForm() {
+    function ClearForm() {
 
-    document.getElementById("BaseCurrency").value = "";
-    document.getElementById("ToCurrency").value = "";
-    document.getElementById("FromDate").value = "";
-    document.getElementById("ToDate").value = "";
-   
- 
-    var canvas0 = document.getElementById("chartjs-0");
-    var context0 = canvas0.getContext('2d');    
-    context0.ClearRect(0, 0, canvas0.width, canvas0.height);
-
-}
+        document.getElementById("BaseCurrency").value = "";
+        document.getElementById("ToCurrency").value = "";
+        document.getElementById("FromDate").value = "";
+        document.getElementById("ToDate").value = "";
+       
+        document.getElementById("ToDateMsg").innerHTML = "";
+        document.getElementById("FromDateMsg").innerHTML = "";
     
-  
+    document.getElementById("BaseCurrency-error").innerHTML = "";
+    document.getElementById("ToCurrency-error").innerHTML = "";
+        
+        var canvas0 = document.getElementById("chartjs-0");
+        var context0 = canvas0.getContext('2d');    
+        context0.ClearRect(0, 0, canvas0.width, canvas0.height);
     
-
-/*$("#currencyvalueForm").validate({
-
-});
-
-   document.getElementById("BaseCurrencyMsg").innerHTML = "";
-    document.getElementById("ToCurrencyMsg").innerHTML = "";
-    document.getElementById("FromDateMsg").innerHTML = "";
-    document.getElementById("ToDateMsg").innerHTML = "";
-
-
- document.getElementById("Results").innerHTML = msg2JSONText; document.getElementById("Results").innerHTML = msg2JSONText;
-
- /v2/aggs/ticker/{forexTicker}/range/{multiplier}/{timespan}/{from}/{to}
-*/
+    }
+        
+      
