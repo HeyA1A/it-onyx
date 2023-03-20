@@ -22,27 +22,30 @@
  <h2>Currency Value History</h2>
            
 <label class="formlabel" >Base Currency:</label>
-  <select name="Base Currency" id="BaseCurrency"
+  <select name="BaseCurrency" id="BaseCurrency"
 data-rule-required="true" data-msg-required="Currency is Required">
-<option value="">Select a Currrency...</option>
+<option value="">Select a Currency...</option>
 <option value="USD">US Dollars</option>
-<option value="TSH">Tanzanian Shilling</option>
+<option value="TZS">Tanzanian Shilling</option>
+<option value="EUR">Euro</option>
+<option value="MXN">Mexican Peso</option>
+<option value="TRY">Turkish Iira</option></select><br>
+
+
+
+
+<label class="formlabel" for="ToCurrency">Convert to Currency:</label>
+  <select id="ToCurrency" name ="ToCurrency"
+data-rule-required="true" data-msg-required="Currency is Required"> 
+
+<option value="">Select a Currency...</option>
+<option value="USD">US Dollars</option>
+<option value="TZS">Tanzanian Shilling</option>
 <option value="EUR">Euro</option>
 <option value="MXN">Mexican Peso</option>
 <option value="TRY">Turkish Iira</option>
 </select><br>
 
-<label class="formlabel">Convert to Currency:</label>
-  <select id="ToCurrency" name ="ToCurrency"
-data-rule-required="true" data-msg-required="Currency is Required">
-<option value="">Select a Currrency...</option>
-<option value="USD">US Dollars</option>
-<option value="TSH">Tanzanian Shilling</option>
-<option value="EUR">Euro</option>
-<option value="MXN">Mexican Peso</option>
-<option value="TRY">Turkish Iira</option>
-</select><br>
-           
 
 <label class="formlabel" for="FromDate">From Date:</label>
   <input type="date" id="FromDate" name="FromDate" 
@@ -55,18 +58,20 @@ data-rule-required="true" data-msg-required="To Date is Required">
 <label for="ToDate" class="error" id="ToDateMsg"></label><br>
 
 
-          <input type="button" value="ShowResults" id= "ShowResults" name="ShowResults" onclick="Results();">
-          <input type="button" value="Clear" id= "Clear" name= "Clear" onclick="ClearForm();">
+<input type="button" value="ShowResults" id= "ShowResults" name="ShowResults" onclick="Results();">
+<input type="button" value="Clear" id= "Clear" name= "Clear" onclick="ClearForm();">
 <hr>
+<div class="img-container">
+  <canvas id="chartjs-0" width="400" height="400"></canvas>
+</div>
 
 <script>
-  $("#currencyvalueForm").validate({
-  
-  });
-  
-  </script>
-  
+$("#currencyvalueForm").validate({
 
- </form>
+});
+
+</script>
+
+</form>
     </body>
 </html>

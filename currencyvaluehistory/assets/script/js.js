@@ -16,24 +16,9 @@ async function Results() {
 
         var apiKey = "NWUV7nTLbvIAdK6Z5W37ooGaSLBDzqYp"
         
-        var myURL1 = "https://api.polygon.io/v3/reference/tickers/" + BaseCurrency + ToCurrency + FromDate + ToDate + "?apiKey=" + apiKey;
-        var msg1Object = await fetch(myURL1);
-
-        if (msg1Object.status >= 200 && msg1Object.status <= 299) {              
-           
-            var msg1JSONText = await msg1Object.text();
-          
-            var msg1 = JSON.parse(msg1JSONText);
-
-            document.getElementById("Results").innerHTML = msg1.results.name;
-        
-        }
-        else {
-         
-            alert("Currency Not Found - Status: " + msg1Object.status);
-        }        
-         
-        var myURL2 = "https://api.polygon.io//v2/aggs/ticker/" + BaseCurrency + ToCurrency + "/range/1/day/" + FromDate + "/" + ToDate + "?unadjusted=false&sort=asc&limit=32&apiKey=" + apiKey;
+  
+        var myURL2 = "https://api.polygon.io/v2/aggs/ticker/C:" 
+        + BaseCurrency + ToCurrency + "/range/1/day/" + FromDate + "/" + ToDate + "?adjusted=true&sort=asc&limit=32&apiKey=" + apiKey;
            var msg2Object = await fetch(myURL2);
     
             if (msg2Object.status >= 200 && msg2Object.status <= 299) {            
@@ -48,7 +33,7 @@ async function Results() {
             if (numdays > 0) {
               for (var i = 0; i < numdays; i++) {
                 
-                value[i] = msg2.results[i].c;
+                 value[i] = msg2.results[i].c;
                 var tempdate = new Date(msg2.results[i].t);
                 date[i] = tempdate.toLocaleDateString(); 
             }
@@ -78,23 +63,26 @@ async function Results() {
         }
     }
 
-    function ClearForm() {
+function ClearForm() {
 
-        document.getElementById("BaseCurrency").value = "";
-        document.getElementById("ToCurrency").value = "";
-        document.getElementById("FromDate").value = "";
-        document.getElementById("ToDate").value = "";
-       
-        document.getElementById("ToDateMsg").innerHTML = "";
-        document.getElementById("FromDateMsg").innerHTML = "";
+    document.getElementById("BaseCurrency").value = "";
+    document.getElementById("ToCurrency").value = "";
+    document.getElementById("FromDate").value = "";
+    document.getElementById("ToDate").value = "";
+   
+    document.getElementById("ToDateMsg").innerHTML = "";
+    document.getElementById("FromDateMsg").innerHTML = "";
+
+document.getElementById("BaseCurrency-error").innerHTML = "";
+document.getElementById("ToCurrency-error").innerHTML = "";
     
-    document.getElementById("BaseCurrency-error").innerHTML = "";
-    document.getElementById("ToCurrency-error").innerHTML = "";
-        
-        var canvas0 = document.getElementById("chartjs-0");
-        var context0 = canvas0.getContext('2d');    
-        context0.ClearRect(0, 0, canvas0.width, canvas0.height);
+    var canvas0 = document.getElementById("chartjs-0");
+    var context0 = canvas0.getContext('2d');    
+    context0.ClearRect(0, 0, canvas0.width, canvas0.height);
+
+}
     
-    }
-        
-      
+  
+    
+
+
