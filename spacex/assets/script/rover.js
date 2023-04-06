@@ -1,106 +1,103 @@
 async function DisplayPhotos() {
-    "use strict";
-  
-    var form = $("#roverForm");
-    
-  
-    form.validate();
-  
-    if (form.valid()) {
-        
-   
-   var rover;
-  
-      if (document.getElementById("CuriosityRover").checked) {
-        rover = document.getElementById("CuriosityRover").value;
-      }
-      if (document.getElementById("OpportunityRover").checked) {
-        rover = document.getElementById("OpportunityRover").value;
-      }
-      if (document.getElementById("SpiritRover").checked) {
-        rover= document.getElementById("SpiritRover").value;
-      }
-      var picturedate = document.getElementById("PictureDate").value;
-      
-    var apiKey = "FZlhSTyevaFD5lvHygg6x9rOgQ31XvOystLgSBMj"
-          
-      var myURL1 = "https://api.nasa.gov/mars-photos/api/v1/rovers/" + Rover  + PictureDate + "?apiKey=" + apiKey;
-      var msg1Object = await fetch(myURL1);
-  
-      if (msg1Object.status >= 200 && msg1Object.status <= 299) {              
-         
-          var msg1JSONText = await msg1Object.text();
-        
-          var msg1 = JSON.parse(msg1JSONText);
-  
-          document.getElementById("DisplayPhotos").innerHTML = msg1.results.name;
-      
-      }
-      else {
-       
-          alert("Rover Not Found - Status: " + msg1Object.status);
-      }        
-   
-      var myURL2 = "https://api.nasa.gov/mars-photos/api/v1/rovers/"  + rover + "/range/1/day/" + picturedate + "/" + "?unadjusted=false&sort=asc&limit=32&apiKey=" + apiKey;
-         var msg2Object = await fetch(myURL2);
-  
-          if (msg2Object.status >= 200 && msg2Object.status <= 299) {            
-              var msg2JSONText = await msg2Object.text();
-         
-              var msg2 = JSON.parse(msg2JSONText);
-             
-      
-          var date = [];
-          var photos = [];
-          var photos = msg2.results.length;
-           for (var i = 0; i < numdays; i++) {
-          
-              photos[i] = msg2.results[i].c;
-              var tempdate = new Date(msg2.results[i].t);
-              date[i] = tempdate.toLocaleDateString(); 
-          }
-          }
-          var ctx0 = document.getElementById("chartjs-0");
-          var myChart = new Chart(ctx0, {
-              "type":"line",
-              "data": {
-                  "labels": date, 
-                  "datasets":[{"label": "Currency Value History",
-                  "data": value,
-                  "fill":false,
-                  "borderColor":"rgb(75, 192, 192)",
-                  "lineTension":0.1}]},
-                    "options":{ 
-                       responsive: false,
-                       maintainAspectRatio: true,
-                      }
-                  }
-          );
-    }  
-    else {
-          alert("Rover Not Found - Status: " + msg2Object.status)
-          return
-      }
-  }
-  
-  
-    function ClearForm() {
-  
-    
-     
-  
-      document.getElementById("CuriosityRover").checked = false;
-      document.getElementById("OpportunityRover").checked = false;
-      document.getElementById("SpiritRover").checked = false;
-      document.getElementById("RoverMsg").innerHTML = "";
-    
-  
-      document.getElementById("PictureDate").value = "";
-      document.getElementById("dateMsg").innerHTML = "";
-  
-    
-    
-    
-  
-  
+
+  let rover = $('input[name="rover"]:checked').val();
+  let date = $('#PicDate').val();
+
+
+  makeAPICall(rover, date);
+}
+
+const apiEndpoint = 'https://api.nasa.gov/mars-photos/api/v1/rovers';
+const apiKey = '7jNjBvKe2SYqRRbScCXOfVOWNq0g2zVUHmVIR70p';
+
+function createGallery(images) {
+const photoContainer = document.getElementById('photoContainer');
+photoContainer.innerHTML = '';
+
+
+for (let i = 0; i < 25; i++) {
+  const image = images[i];
+
+  const imgContainer = document.createElement('div');
+  imgContainer.classList.add('imageContainer');
+  const img = document.createElement('img');
+  img.src = image.img_src;
+  img.alt = image.camera.full_name;
+  img.title = image.camera.name;
+  img.addEventListener('click', () => {
+    window.open(image.img_src, '_blank');
+  });
+  imgContainer.appendChild(img);
+  photoContainer.appendChild(imgContainer);
+}
+}
+function searchPhotos(rover, date) {
+const url = `${apiEndpoint}/${rover}/photos?earth_date=${date}&api_key=${apiKey}`;
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const images = data.photos;
+    if (images.length > 0) {
+      createGallery(images);
+    } else {
+      alert('No photos found for the selected date.');
     }
+  })
+  .catch(error => console.error(error));
+}
+function DisplayPhotos() {
+const form = document.getElementById('marsForm');
+if (form.checkValidity()) {
+  const rover = document.querySelector('input[name="rover"]:checked').value;
+  const date = document.getElementById('PicDate').value;
+  searchPhotos(rover, date);
+}
+}
+
+function ClearForm() {
+const form = document.getElementById('marsForm');
+form.reset();
+const photoContainer = document.getElementById('photoContainer');
+photoContainer.innerHTML = '';
+}
+
+function getCuriosity() {
+document.getElementById('PicDate').min = '2012-08-06';
+document.getElementById('PicDate').max = '2019-09-28';
+}
+
+function getOpportunity() {
+document.getElementById('PicDate').min = '2004-01-26';
+document.getElementById('PicDate').max = '2016-06-11';
+}
+
+function getSpirit() {
+document.getElementById('PicDate').min = '2004-01-05';
+document.getElementById('PicDate').max = '2004-03-21';
+}
+
+
+
+
+function ClearForm() {
+  $('#marsForm')[0].reset();
+  $('#photoContainer').empty();
+}
+
+$('#marsForm').submit(function(e) {
+  e.preventDefault();
+  DisplayPhotos();
+});
+
+
+function getCuriosity() {
+  document.getElementById("PicDate").value = "2012-08-06";
+}
+
+function getOpportunity() {
+  document.getElementById("PicDate").value = "2004-01-26";
+}
+
+function getSpirit() {
+  document.getElementById("PicDate").value = "2004-01-05";
+}

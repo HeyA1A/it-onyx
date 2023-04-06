@@ -124,3 +124,27 @@ text-decoration-thickness: 200px;
 
     
 }
+}
+
+.img-container {
+  float: left;
+  width: 40%;
+  padding: 20px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#photoContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+img{
+  width: 250px;
+  padding: 5px;
+}

@@ -55,67 +55,48 @@
 
 <hr>
 
-<form id="roverForm">
-  <div class="formcontainer">
+<h1>Mars Rover Photo Explorer</h1>
+<form id="marsForm">
+ <section class="formcontainer">
 
-<h2>Select a Rover and Picture Date</h2>
-       
-<label class="formlabel" for ="Rover">Rover:</label>
+<h2>Select a rover and picture date:</h2>
 
-<label for="CuriosityRover">
-<input
-  type="radio"
-  name="Rover"
-  id="CuriosityRover"
-  value="Curiosity"
-  data-rule-required="true"
-  data-msg-required="Rover selection is Required"/>Curiosity</label>
+ <label>Rover:</label>
 
-<label for="OpportunityRover">
-  <input
-    type="radio"
-    name="Rover"
-    id="OpportunityRover"
-    value="Opportunity"
-    data-rule-required="true"
-    data-msg-required="Rover selection is Required"/>Opportunity</label>
+  <label for="Curiosity"><input type="radio" onchange="getCuriosity()"
+   name="rover"
+   id="Curiosity"
+   value="Curiosity"
+   data-rule-required="true" data-msg-required="Rover is Required">Curiosity</label>
+  
+ <label for="Opportunity"><input type="radio" onchange="getOpportunity()"
+   name="rover"
+   id="Opportunity"
+   value="Opportunity"
+   data-rule-required="true" data-msg-required="Rover is Required">Opportunity</label>
+ 
+  <label for="Spirit"><input type="radio" onchange="getSpirit()"
+   name="rover"
+   id="Spirit"
+   value="Spirit"
+   data-rule-required="true" data-msg-required="Rover is Required">Spirit</label>
 
-  <label for="SpiritRover">
-    <input
-      type="radio"
-      name="Rover"
-      id="SpiritRover"
-      value="Spirit"
-      data-rule-required="true"
-      data-msg-required="Rover Selection is Required"/>Spirit</label>
+  <label for="rover" class="error"></label>
+  <br>
 
-      <label for="Rover" class="error" id="RoverMsg"></label>
-      <br><br>
+  <label>Picture Date:</label>
+  <input type="date" name="PicDate" id="PicDate" data-rule-required="true"
+      data-msg-required="Picture Date is Required">
+  <label id="PicDateError" for="PicDate" class="error"></label>
 
+ </section>
+  <input type="button" value="Search" id="Search" name="Search" onclick="DisplayPhotos();">
+  <input type="button" value="Clear" id="Clear" name="Clear" onclick="ClearForm();">
+  
 
-<label class="formlabel" for="PictureDate">Picture Date:</label>
-
-<input type="date" id="PictureDate" name="PictureDate" 
-data-rule-required="true" data-msg-required="Date is Required">
-<label for="PictureDate" class="error" id="dateMsg"></label><br>
-
-
-
-<input type="button" value="Search" id ="Search" name="Search" onclick="DisplayPhotos();">
-<input type="button" value="Clear" id="Clear" name="Clear" onclick="ClearForm();">
-<hr>
-
-
-
-
-
-<script>
-$("#roverForm").validate({
-
-});
-
-</script>
-</form>
+  <div id="photoContainer">
+  </div>
+  </form>
 
 </main>
 </body>

@@ -5,32 +5,196 @@
  <meta charset="UTF-8">
  <meta name="robots" content="noindex">
 
-  <title>Home Base</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap" rel="stylesheet">
-  <link href="assets/style/home.css" rel="stylesheet">
-  <script src="assets/script/js.js"></script>
+ <title>Home Base</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap" rel="stylesheet">
+ <link href="assets/style/home.css" rel="stylesheet">
+ <script src="assets/script/js.js" defer></script>
+ 
   
 </head>
 <body>
 <main>
 
    <header role="banner" class="primary container">
-    <a href="https://www.spacex.com/vehicles/dragon/" class="logo">
-      <img src="assets/images/spacex_logo_blue_space_x.png">
+    <a href="https://www.spacex.com/vehicles/dragon/">
+      <img src="assets/images/spacex_logo_blue_space_x.png" class="logo">
      </a>
+     
    </div>
      </header>
      <br>
 
  <section id="content" class="container">
+
+  
   <h3>DRAGON OVERVIEW</h3>
  <p>
     Dragon is a free-flying spacecraft designed to deliver both cargo and people to orbiting destinations. Dragon made history in 2012 when it became the first commercial spacecraft in history to deliver
     cargo to the International Space Station and safely return cargo to Earth, a feat previously achieved only by governments. It is the only spacecraft currently flying that is capable of returning significant amounts of cargo to Earth.
    Currently Dragon carries cargo to space, but it was designed from the beginning to carry humans. Under an agreement with NASA, SpaceX is now developing the refinements that will enable Dragon to fly crew. 
    Dragon's first manned test flight is expected to take place as early as 2018. </p>
+
+
+
+    <div class="slideshow">
+        <div id="slides">
+            <div class="slide show" data-slide="1">
+                <img src="assets/images/64749370_605 (Custom).jpeg"
+                    alt="Spacex Dragon capsule in space docking with ISS with the Earth seen in the background">
+
+                <div class="content">
+                    <span class="title">-1-</span>
+
+                    <p class="description">
+                        SpaceX Crew Dragon capsule docks with ISS March 3, 2023
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="2">
+                <img src="assets/images/firstcrew-dragon-launch (Custom).jpeg" alt="Rooftop view of the Dragon capusule in launch position with a sunset over ocean water in the background.">
+
+                <div class="content">
+                    <span class="title">-2-</span>
+
+                    <p class="description">
+                        SpaceX's first Crew Dragon spacecraft is seen atop its Falcon 9 rocket
+                         at Launch Pad 39A of NASA's Kennedy Space Center in Cape Canaveral, Florida
+                          in February 2019. (Image credit: SpaceX)
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="3">
+                <img src="assets/images/https___cdn.cnn.com_cnnnext_dam_assets_190302144345-06-crew-dragon-spacex (Custom).jpeg" alt="Drgon capsule floating in space approaching the dock at the International Space Station">
+
+                <div class="content">
+                    <span class="title">-3-</span>
+
+                    <p class="description">
+                   Dragon preparing to dock at the International Space Station
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="4">
+                <img src="assets/images/SpaceX-Crew-Dragon-C206-Demo-2-ISS-spacewalk-070120-NASA-2-crop-4 (1) (Custom).jpeg" alt="Close view of Dragon docking at the International
+                 Space Station with a black sky and view of the Earth's surface in the background.">
+
+                <div class="content">
+                    <span class="title">-4-</span>
+
+                    <p class="description">
+                        SpaceX Crew Dragon successfully docks at International Space Station
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="5">
+                <img src="assets/images/Science_spacex_1227204520 (Custom).jpeg"
+                    alt="Falcon 9 rocket with Dragon capsule shown in a horizontal postion before being loaded onto the lauchoad for takeoff">
+
+                <div class="content">
+                    <span class="title">-5-</span>
+
+                    <p class="description">
+                    Workers prepare the SpaceX Falcon 9 rocket with the Crew Dragon spacecraft attached for
+                         lift off from the Kennedy Space Center May 26, 2020 (Photo by Joe Raedle/Getty Images)
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-btn next">
+                <span>&raquo;</span>
+            </div>
+
+            <div class="slide-btn prev">
+                <span>&laquo;</span>
+            </div>
+        </div>
+
+        <div id="gallery">
+            <div class="thumbnail" data-slide="1">
+                <img src="assets/images/64749370_605 (Custom).jpeg"
+                alt="Spacex Dragon capsule in space docking with ISS with the Earth seen in the background">
+
+                <div class="content">
+                    <span class="title">1</span>
+
+                    <p class="description">
+                        Dragon at the ISS
+                     
+                    </p>
+                </div>
+            </div>
+
+            <div class="thumbnail" data-slide="2">
+                <img src="assets/images/firstcrew-dragon-launch (Custom).jpeg" alt="Rooftop view of the Dragon capusule in launch position with a sunset over ocean water in the background.">
+
+
+                <div class="content">
+                    <span class="title">2</span>
+
+                    <p class="description">
+                    Ready for Launch
+                    </p>
+                </div>
+            </div>
+
+            <div class="thumbnail" data-slide="3">
+                <img src="assets/images/https___cdn.cnn.com_cnnnext_dam_assets_190302144345-06-crew-dragon-spacex (Custom).jpeg" alt="Drgon capsule floating in space approaching the dock at the International Space Station">
+
+
+                <div class="content">
+                    <span class="title">3</span>
+
+                    <p class="description">
+                        Preparing to Dock 
+                    </p>
+                </div>
+            </div>
+
+            <div class="thumbnail" data-slide="4">
+                <img src="assets/images/SpaceX-Crew-Dragon-C206-Demo-2-ISS-spacewalk-070120-NASA-2-crop-4 (1) (Custom).jpeg" alt="Close view of Dragon docking at the International
+                Space Station with a black sky and view of the Earth's surface in the background.">
+
+
+                <div class="content">
+                    <span class="title">4</span>
+
+                    <p class="description">
+                Docking success
+                    </p>
+                </div>
+            </div>
+
+            <div class="thumbnail" data-slide="5">
+                <img src="assets/images/Science_spacex_1227204520 (Custom).jpeg"
+                alt="Falcon 9 rocket with Dragon capsule shown in a horizontal postion before being loaded onto the lauchoad for takeoff">
+
+
+                <div class="content">
+                    <span class="title">5</span>
+
+                    <p class="description">
+                       Attaching Dragon to Falcon 9
+                    </p>
+                </div>
+            </div>
+        
+        </div></div>
+     
+
+        <br><br>
+
+
+
+
  
    <h3>DELIVERY AND RETURN SERVICES</h3>
   <p>Dragon is the first commercial spacecraft to deliver cargo to the International Space Station and currently the only cargo spacecraft flying capable of returning significant 
@@ -51,7 +215,7 @@
         <li><span class= "headingcolor">Capabilities</span> - DragonLab can readily accommodate instrument and sensor testing, space physics and relativity experiments, radiation effects research, and many other microgravity tests.</li></p>
  </ul>
 
-  </main>
+</main>
 </section>
     <div class="container-footer w-container">
      <div class="w-row">
@@ -86,7 +250,6 @@
               <a href="https://www.instagram.com/spacex/?hl=en" target="_blank" class="footer-social-network-icons w-inline-block"><img src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dbfe70fcf5a0514c5b1da_Instagram%20Icon.svg" width="20" alt="Instagram icon"></a>
                   <a href="https://www.facebook.com/spacenewsx/" target="_blank" class="footer-social-network-icons w-inline-block"><img src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dbe42e1e6034fdaba46f6_Facebook%20Icon.svg" width="20" alt="Facebook Icon"></a>
                   <a href="https://www.linkedin.com/company/spacex" target="_blank" class="footer-social-network-icons w-inline-block"><img src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dc0002f2b676eb4ba0869_LinkedIn%20Icon.svg" width="20" alt="LinkedIn Icon"></a>
-                
                   <p class="footer-description">Email me<a href="mailto:aauthier@ualr.edu"> <class="link-email-footer">HERE</a><br></p>
                   <p class="footer-description">Fill out contact form<a href="https://justsendithere.wufoo.com/forms/m1ki9tgc0kirn78/"> <class="link-email-footer">Here</a><br></p>
                

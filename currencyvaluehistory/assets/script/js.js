@@ -1,5 +1,5 @@
 async function Results() {
-    "use strict";
+    "use strict"
        
    
    var form = $("#currencyvalueForm");
@@ -27,6 +27,7 @@ async function Results() {
                 var msg2 = JSON.parse(msg2JSONText);
                
         
+                
             var date = [];
             var value = [];
             var numdays = msg2.results.length;
